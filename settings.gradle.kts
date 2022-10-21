@@ -10,3 +10,4 @@
 rootProject.name = "checkers"
 
 include("checkers-model")
+include("checkers-console-ui")
