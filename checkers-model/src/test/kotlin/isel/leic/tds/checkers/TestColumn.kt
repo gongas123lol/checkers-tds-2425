@@ -38,6 +38,7 @@ class TestColumn {
             List(BOARD_DIM){it},
             ('a'..'z').mapNotNull{ it.toColumnOrNull()?.index }
         )
+
     }
     @Test
     fun `Get all valid values of Column`() {
