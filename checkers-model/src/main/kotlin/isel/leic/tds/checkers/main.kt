@@ -7,9 +7,12 @@ fun main(args: Array<String>) {
         println("Command-line arguments: ${args.joinToString(", ")}")
     }
 
+    var game = Game("n", false,Board(8),"")
+
     while(true){
         val command = readln()
-        commandHandler(command)
+        println("hello")
+        game = commandHandler(command, game)
     }
 
 }
