@@ -7,7 +7,7 @@ fun main(args: Array<String>) {
         println("Command-line arguments: ${args.joinToString(", ")}")
     }
 
-    var game = Game("n", false,Board(8),"")
+    var game = Game("n", false,Board(8, null),"")
 
     while(true){
         val command = readln()

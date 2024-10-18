@@ -1,6 +1,6 @@
 package isel.leic.tds.checkers
 
-class Board(size: Int? , rows: List<List<Square>>) {
+class Board(size: Int? , rows: List<List<Square>>?) {
 
     val rows: List<List<Square>> = if(rows != null) rows else List(size?: defSize) { rowIndex ->
         List(size?: defSize) { colIndex ->
@@ -8,7 +8,7 @@ class Board(size: Int? , rows: List<List<Square>>) {
             // Place pieces on the first three and last three rows (standard checkers setup)
             if (rowIndex < 3 && square.black) {
                 square.piece = Piece.BLACK
-            } else if (rowIndex >= (size ?: (defSize - 3)) && square.black) {
+            } else if (rowIndex >= size?:(defSize - 3)  && square.black) {
                 square.piece = Piece.WHITE
             }
             square
