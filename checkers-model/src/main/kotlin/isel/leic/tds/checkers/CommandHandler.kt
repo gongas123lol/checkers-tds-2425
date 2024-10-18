@@ -22,10 +22,14 @@ fun commandHandler(command: String, game: Game): Game {
     } else {  // Game is active
         if (split[0].contains("move", true)) {
             println("Handling move command")
+            val tr = game.copy(board = game.board.movePiece(1,'a', 4,'b') )
+            tr.board.printBoard()
+            return tr
         }
 
         game.board.printBoard()
     }
 
-    return game  // Return the game in its current state
+    return game
+// Return the game in its current state
 }

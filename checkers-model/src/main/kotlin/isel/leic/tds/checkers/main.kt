@@ -1,5 +1,8 @@
 package isel.leic.tds.checkers
 
+
+//sou da turma 33d REMEMBER
+
 fun main(args: Array<String>) {
     if (args.isEmpty()) {
         println("Welcome to the Checkers App")
@@ -11,7 +14,7 @@ fun main(args: Array<String>) {
 
     while(true){
         val command = readln()
-        println("hello")
+        //println("hello")
         game = commandHandler(command, game)
     }
 
