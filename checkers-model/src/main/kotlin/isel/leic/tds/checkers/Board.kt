@@ -54,14 +54,13 @@ class Board(size: Int?, rows: List<List<Square>>?) {
             val pieceInTheMiddle = getMiddle(row,col,destRow, destCol)
             println(pieceInTheMiddle)
         }else if(dist == sqrt2){
-            return this //...
+
         }
 
-
-
-
         val boardAfterMove = this.withPiece(destRow, destCol, curr.piece)
+        println(boardAfterMove)
         return boardAfterMove.withPiece(row, col, null)
+
     }
 
     private fun getMiddle(row: Int, col: Char, destRow: Int, destCol: Char): Square {
@@ -74,37 +73,32 @@ class Board(size: Int?, rows: List<List<Square>>?) {
 
 
     fun printBoard() {
-        val n = "    a  b  c  d  e  f  g  h"
-        var cnt = this.size
+        val columnHeaders = "    a  b  c  d  e  f  g  h"
+        println(columnHeaders)
 
-        println(n)
-        val line = "  +" + "-".repeat(this.size * 3) + "+"
+        val line = "  +" + "-".repeat(size * 3) + "+"
         println(line)
+
+        var rowNumber = size
         for (row in rows) {
-            print(cnt.toString())
-            print(" |")
+            print("$rowNumber |")
             for (square in row) {
                 val pieceChar = when (square.piece) {
                     Piece.BLACK -> " b "
                     Piece.WHITE -> " w "
                     Piece.BLACK_KING -> " B "
                     Piece.WHITE_KING -> " W "
-                    else -> "   "
+                    else -> if (square.black) " · " else "   "
                 }
                 print(pieceChar)
             }
-            print("| ")
-            print(cnt--.toString())
-            println()
+            println("| $rowNumber")
+            rowNumber--
         }
         println(line)
-        println(n)
-
-       // println("1a" + (getSquare(0,0).piece))
-       // println("2b" + (getSquare(1,1).piece))
-       // println("8h" + (getSquare(7,7).piece))
+        println(columnHeaders)
     }
-    fun distanceBetween(row1: Int, col1: Char, row2: Int, col2: Char): Double {
+    private fun distanceBetween(row1: Int, col1: Char, row2: Int, col2: Char): Double {
 
         val internalRow1 = (size - row1) - 1
         val internalRow2 = (size - row2) - 1
@@ -113,5 +107,5 @@ class Board(size: Int?, rows: List<List<Square>>?) {
         val colDifference = (col1 - col2).toDouble()
         return kotlin.math.sqrt(rowDifference * rowDifference + colDifference * colDifference)
     }
-    fun getSquare(row: Int, col: Char): Square = rows[(size - 2) -row][ col - 'a']
+     fun getSquare(row: Int, col: Char): Square = rows[(size) -row][ col - 'a']
 }

@@ -30,9 +30,9 @@ class Square(val row: Row, val column: Column, var piece: Piece? = null) {
     companion object {
         fun String.toSquareOrNull(): Square? {
             if (length != 2) return null
-            val row = this[0].toRowOrNull() ?: return null
-            val column = this[1].toColumnOrNull() ?: return null
-            return Square(row, column)
+            val row : Int = this[0].digitToIntOrNull()?:return null
+            val column: Int = this[1] - 'a'
+            return Square(Row(row), Column(column))
         }
 
         fun String.toSquare(): Square {
