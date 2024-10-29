@@ -1,9 +1,10 @@
 package isel.leic.tds.checkers
 
+import isel.leic.tds.checkers.Square.Companion.toSquare
 import isel.leic.tds.checkers.Square.Companion.toSquareOrNull
+import kotlin.jvm.Throws
 
 fun commandHandler(command: String, game: Game): Game {
-    println("$command $game")
     val split = command.split(" ")
 
     if (!game.active) {  // Game not active
@@ -32,17 +33,13 @@ fun commandHandler(command: String, game: Game): Game {
                 println("Invalid command for an active game")
                 return game
             }
-            val srcMove = split[1].toSquareOrNull()
-            val destMove = split[2].toSquareOrNull()
-            if (srcMove != null) {
-                println("${srcMove.row},${srcMove.index},${srcMove.piece}")
-            }
-            if (destMove != null) {
-                println("${destMove.row},${destMove.index},${destMove.piece}")
-            }
+            val srcMove: Square = split[1].toSquare()
+            val destMove : Square = split[2].toSquare()
+
             println(destMove)
-            val tr = game.copy(board = game.board.movePiece(3,'a', 4,'b') )
-            println(tr.board.getSquare(5,'c').toString())
+            val tr = game.copy(
+                board = game.board.movePiece(srcMove.index % 8, srcMove.row.ch, destMove.index % 8, destMove.row.ch)
+            )
             tr.board.printBoard()
             return tr
         }

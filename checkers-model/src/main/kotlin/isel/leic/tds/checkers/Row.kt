@@ -4,8 +4,8 @@ const val BOARD_DIM = 8
 
 @JvmInline
 value class Row(val index: Int) {
-
-
+    val ch : Char get()= ('a' + index)
+        //useless
     val digit: Char
         get() = ('1' + (BOARD_DIM - 1) - index)
 

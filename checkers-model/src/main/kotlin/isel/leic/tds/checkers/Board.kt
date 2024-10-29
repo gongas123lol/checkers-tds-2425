@@ -83,6 +83,7 @@ class Board(size: Int?, rows: List<List<Square>>?) {
         for (row in rows) {
             print("$rowNumber |")
             for (square in row) {
+                //println("${square.row},${square.index},${square.piece}")
                 val pieceChar = when (square.piece) {
                     Piece.BLACK -> " b "
                     Piece.WHITE -> " w "

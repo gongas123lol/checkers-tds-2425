@@ -31,8 +31,8 @@ class Square(val row: Row, val column: Column, var piece: Piece? = null) {
         fun String.toSquareOrNull(): Square? {
             if (length != 2) return null
             val row : Int = this[0].digitToIntOrNull()?:return null
-            val column: Int = this[1] - 'a'
-            return Square(Row(row), Column(column))
+            val column: Int = (this[1] - 'a') + 1
+            return Square(Row(row - 1), Column(column))
         }
 
         fun String.toSquare(): Square {
