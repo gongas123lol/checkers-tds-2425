@@ -1,12 +1,8 @@
 package isel.leic.tds.checkers
 
-
-//similar to the row value class
 @JvmInline
 value class Column(val index: Int) {
-
-    val symbol: Char
-        get() = ('a' + index)
+    val displayChar: Char get() = ('a' + index)  // Maps index to 'a'-based character
 
     init {
         require(index in 0 until BOARD_DIM) {
@@ -15,13 +11,9 @@ value class Column(val index: Int) {
     }
 
     companion object {
-
         fun Char.toColumnOrNull(): Column? {
-            val idx = this - 'a'
+            val idx = this - 'a'  // Direct mapping from 'a' to index
             return if (idx in 0 until BOARD_DIM) Column(idx) else null
         }
-
-        val values: List<Column> = (0 until BOARD_DIM).map { Column(it) }
     }
-
 }

@@ -30,13 +30,16 @@ class Square(val row: Row, val column: Column, var piece: Piece? = null) {
     companion object {
         fun String.toSquareOrNull(): Square? {
             if (length != 2) return null
-            val row : Int = this[0].digitToIntOrNull()?:return null
-            val column: Int = (this[1] - 'a') + 1
-            return Square(Row(row - 1), Column(column))
+            val rowChar = this[0]
+            val colChar = this[1]
+            val row = rowChar.toRowOrNull()
+            val col = colChar.toColumnOrNull()
+            return if (row != null && col != null) Square(row, col) else null
         }
 
         fun String.toSquare(): Square {
             return toSquareOrNull() ?: throw IllegalArgumentException("Invalid square string: $this")
         }
     }
+
 }

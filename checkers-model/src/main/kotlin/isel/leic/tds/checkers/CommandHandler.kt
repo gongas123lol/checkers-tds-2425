@@ -35,10 +35,12 @@ fun commandHandler(command: String, game: Game): Game {
             }
             val srcMove: Square = split[1].toSquare()
             val destMove : Square = split[2].toSquare()
-
+            println("${srcMove.column.index},${srcMove.row.displayChar}")
+            println("${destMove.column.index},${destMove.row.displayChar}")
             println(destMove)
             val tr = game.copy(
-                board = game.board.movePiece(srcMove.index % 8, srcMove.row.ch, destMove.index % 8, destMove.row.ch)
+                board = game.board.movePiece(srcMove.index % 8, srcMove.row.displayChar, destMove.index % 8, destMove.row.displayChar)
+               // board = game.board.movePiece(3,'g', 4,'f')
             )
             tr.board.printBoard()
             return tr
