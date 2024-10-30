@@ -2,9 +2,9 @@ package isel.leic.tds.checkers
 const val BOARD_DIM = 8
 @JvmInline
 value class Row(val index: Int) {
-    val displayChar: Char get() {
+    val displayidx: Int get() {
 
-        return ('1' + (BOARD_DIM - 1) - index)  // Corrects display for 1-based bottom row
+        return ((BOARD_DIM - 1) - index + 1)  // Corrects display for 1-based bottom row
     }
 
     init {

@@ -28,18 +28,18 @@ fun commandHandler(command: String, game: Game): Game {
             return game
         }
         if (split[0].contains("move", true)) {
-            println("Handling move command")
+
             if(split.size == 1) {
                 println("Invalid command for an active game")
                 return game
             }
             val srcMove: Square = split[1].toSquare()
             val destMove : Square = split[2].toSquare()
-            println("${srcMove.column.index},${srcMove.row.displayChar}")
-            println("${destMove.column.index},${destMove.row.displayChar}")
-            println(destMove)
+            //println("${srcMove.row.displayidx},${srcMove.column.displayChar}")
+            //println("${destMove.row.displayidx},${destMove.column.displayChar}")
+
             val tr = game.copy(
-                board = game.board.movePiece(srcMove.index % 8, srcMove.row.displayChar, destMove.index % 8, destMove.row.displayChar)
+                board = game.board.movePiece( srcMove.row.displayidx,srcMove.column.displayChar, destMove.row.displayidx,destMove.column.displayChar)
                // board = game.board.movePiece(3,'g', 4,'f')
             )
             tr.board.printBoard()
