@@ -1,5 +1,5 @@
 package isel.leic.tds.checkers
-
+import java.io.File
 
 class Board(size: Int?, rows: List<List<Square>>?) {
     private val sqrt2: Double = 1.4142135623730951
@@ -35,6 +35,7 @@ class Board(size: Int?, rows: List<List<Square>>?) {
     private fun intToChar(i : Int): Char =  ('a' + i).toChar()
     private  fun CharToInt(c :Char) : Int = (c - 'a').toInt()
 
+     //esta funcao poderia receber um square....
     fun movePiece(row: Int, col: Char, destRow: Int, destCol: Char): Board {
         if (row == destRow && col == destCol){
             println("invalid play.")
@@ -45,7 +46,7 @@ class Board(size: Int?, rows: List<List<Square>>?) {
         val dest = getSquare(destRow, destCol)
 
         val dist = distanceBetween(row,col,destRow,destCol)
-        if(dist != sqrt2 && dist != sqrt8){
+        if(dist != sqrt2 && dist != sqrt8 || (curr.piece == Piece.BLACK && destCol > col) || (curr.piece == Piece.WHITE && destCol < col)){
             println("invalid play.")
             return this
         }
@@ -109,4 +110,19 @@ class Board(size: Int?, rows: List<List<Square>>?) {
         return kotlin.math.sqrt(rowDifference * rowDifference + colDifference * colDifference)
     }
      fun getSquare(row: Int, col: Char): Square = rows[(size) -row][ col - 'a']
+
+
+
+    fun saveToFile(fp : String) {
+            val file = File(fp)
+            file.writeText(rows.toString())
+        return
+    }
+
+    fun retrieveFromFile(fp: String): Board{
+        val file = File(fp)
+        val text = file.readText()
+        val rows = parseBoardString(text)
+        return Board(BOARD_DIM,rows)
+    }
 }

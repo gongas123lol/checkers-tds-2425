@@ -16,6 +16,7 @@ fun main(args: Array<String>) {
         val command = readln()
         //println("hello")
         game = commandHandler(command, game)
+        if(game.active) game.board.saveToFile(game.fp)
     }
 
 }
