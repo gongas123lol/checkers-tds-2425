@@ -1,4 +1,4 @@
-package isel.leic.tds.checkers
+package isel.leic.tds.checkers.classes
 
 enum class Piece(val symbol: Char) {
     BLACK('b'),

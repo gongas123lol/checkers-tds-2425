@@ -1,5 +1,6 @@
-package isel.leic.tds.checkers
+package isel.leic.tds.checkers.helpers
 
+import isel.leic.tds.checkers.classes.*
 import java.io.File
 const val defPath : String = "checkers-model/src/main/games/"
 

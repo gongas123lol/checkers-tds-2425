@@ -1,4 +1,4 @@
-package isel.leic.tds.checkers
+package isel.leic.tds.checkers.classes
 
 @JvmInline
 value class Column(val index: Int) {

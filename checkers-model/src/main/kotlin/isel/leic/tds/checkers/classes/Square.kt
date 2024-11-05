@@ -1,7 +1,7 @@
-package isel.leic.tds.checkers
+package isel.leic.tds.checkers.classes
 
-import isel.leic.tds.checkers.Column.Companion.toColumnOrNull
-import isel.leic.tds.checkers.Row.Companion.toRowOrNull
+import isel.leic.tds.checkers.classes.Column.Companion.toColumnOrNull
+import isel.leic.tds.checkers.classes.Row.Companion.toRowOrNull
 
 class Square(val row: Row, val column: Column, var piece: Piece? = null) {
 

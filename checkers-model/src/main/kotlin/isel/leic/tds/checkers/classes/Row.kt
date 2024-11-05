@@ -1,4 +1,4 @@
-package isel.leic.tds.checkers
+package isel.leic.tds.checkers.classes
 const val BOARD_DIM = 8
 @JvmInline
 value class Row(val index: Int) {

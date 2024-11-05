@@ -1,4 +1,8 @@
-package isel.leic.tds.checkers
+package isel.leic.tds.checkers.cli
+
+import isel.leic.tds.checkers.classes.Board
+import isel.leic.tds.checkers.classes.Game
+import isel.leic.tds.checkers.helpers.commandHandler
 
 
 //sou da turma 33d REMEMBER
@@ -10,7 +14,7 @@ fun main(args: Array<String>) {
         println("Command-line arguments: ${args.joinToString(", ")}")
     }
 
-    var game = Game("n", false,Board(8, null),"")
+    var game = Game("n", false, Board(8, null),"")
 
     while(true){
         val command = readln()

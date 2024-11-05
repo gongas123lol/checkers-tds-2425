@@ -1,4 +1,6 @@
-package isel.leic.tds.checkers
+package isel.leic.tds.checkers.classes
+
+import isel.leic.tds.checkers.helpers.parseBoardString
 import java.io.File
 
 class Board(size: Int?, rows: List<List<Square>>?) {
@@ -44,9 +46,11 @@ class Board(size: Int?, rows: List<List<Square>>?) {
 
         val curr = getSquare(row, col)
         val dest = getSquare(destRow, destCol)
+         println("col:$col")
+         println("destcol:$destCol")
 
         val dist = distanceBetween(row,col,destRow,destCol)
-        if(dist != sqrt2 && dist != sqrt8 || (curr.piece == Piece.BLACK && destCol > col) || (curr.piece == Piece.WHITE && destCol < col)){
+        if(dist != sqrt2 && dist != sqrt8 || (curr.piece == Piece.BLACK && destRow > row) || (curr.piece == Piece.WHITE && destRow < row)){
             println("invalid play.")
             return this
         }
