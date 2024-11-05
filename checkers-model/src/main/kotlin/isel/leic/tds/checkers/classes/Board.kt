@@ -46,12 +46,10 @@ class Board(size: Int?, rows: List<List<Square>>?) {
 
         val curr = getSquare(row, col)
         val dest = getSquare(destRow, destCol)
-         println("col:$col")
-         println("destcol:$destCol")
 
         val dist = distanceBetween(row,col,destRow,destCol)
         if(dist != sqrt2 && dist != sqrt8 || (curr.piece == Piece.BLACK && destRow > row) || (curr.piece == Piece.WHITE && destRow < row)){
-            println("invalid play.")
+            println("---invalid play---")
             return this
         }
 
@@ -117,16 +115,17 @@ class Board(size: Int?, rows: List<List<Square>>?) {
 
 
 
-    fun saveToFile(fp : String) {
+    fun saveToFile(fp : String, w: Char) {
             val file = File(fp)
-            file.writeText(rows.toString())
+            file.writeText(w.toString())
+            file.appendText(rows.toString())
         return
     }
 
     fun retrieveFromFile(fp: String): Board{
         val file = File(fp)
         val text = file.readText()
-        val rows = parseBoardString(text)
+        val rows = parseBoardString(text.split("|")[1])
         return Board(BOARD_DIM,rows)
     }
 }

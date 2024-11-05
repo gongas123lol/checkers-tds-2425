@@ -20,8 +20,10 @@ private fun handleStartCommand(split: List<String>, game: Game): Game {
             val gameName = split[1]
             val fp = checkAndCreateFile(gameName)
             val board = game.board.retrieveFromFile(fp)
+            val currToPlay = getCurrPlay(fp)
             board.printBoard()
-            game.copy(name = gameName, fp = fp, board = board, active = true)
+            println("NOW PLAYS: " + game.who)
+            game.copy(who = currToPlay , name = gameName, fp = fp, board = board, active = true)
         }
         else -> game // Invalid command for inactive game
     }
@@ -51,8 +53,22 @@ private fun handleMoveCommand(split: List<String>, game: Game): Game {
         destMove.column.displayChar
     )
 
-    updatedBoard.printBoard()
-    return game.copy(board = updatedBoard)
+    val nextToPlay = when(game.who){
+            'B' -> 'W'
+            'W' -> 'B'
+            else-> 'W'
+    }
+    if(updatedBoard != game.board){
+        updatedBoard.printBoard()
+        println("NOW PLAYS: $nextToPlay")
+        return game.copy(who = nextToPlay ,board = updatedBoard)
+    }else{
+        updatedBoard.printBoard()
+        println("NOW PLAYS: " +game.who)
+        return game.copy(who = game.who ,board = updatedBoard)
+    }
+
+    return game.copy(who = nextToPlay ,board = updatedBoard)
 }
 
 private fun handleRefreshCommand(game: Game): Game {

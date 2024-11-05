@@ -49,3 +49,14 @@ fun parseBoardString(boardString: String): List<List<Square>> {
         }
     }
 }
+
+fun getCurrPlay(filePath: String): Char{
+    val file = File(filePath)
+    val text = file.readText()
+    val currToPlay = text.split("|")[0]
+    return currToPlay.toChar()
+}
+
+fun String.toChar(): Char {
+    return this[0]
+}
