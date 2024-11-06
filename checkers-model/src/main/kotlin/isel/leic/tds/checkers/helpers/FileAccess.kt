@@ -10,13 +10,13 @@ const val defPath : String = "checkers-model/src/main/games/"
 This function checks if a game already exists, if not, it creates it and returns the file path.
  */
 
-fun checkAndCreateFile(filePath: String): String {
+fun checkAndCreateFile(w: Char, filePath: String): String {
     val fp = "$defPath$filePath.che"
     val file = File(fp)
 
     if (!file.exists()) {
         val bd = Board(BOARD_DIM, null)
-        bd.saveToFile(fp)
+        bd.saveToFile(fp, w)
         println("'$filePath' game created")
         println("starting game...")
         return fp

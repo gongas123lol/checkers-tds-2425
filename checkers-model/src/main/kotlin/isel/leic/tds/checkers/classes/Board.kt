@@ -117,7 +117,7 @@ class Board(size: Int?, rows: List<List<Square>>?) {
 
     fun saveToFile(fp : String, w: Char) {
             val file = File(fp)
-            file.writeText(w.toString())
+            file.writeText("$w|")
             file.appendText(rows.toString())
         return
     }

@@ -18,7 +18,8 @@ private fun handleStartCommand(split: List<String>, game: Game): Game {
         1 -> game // Missing game name
         2 -> {
             val gameName = split[1]
-            val fp = checkAndCreateFile(gameName)
+            //comeca smp o branco
+            val fp = checkAndCreateFile('W',gameName)
             val board = game.board.retrieveFromFile(fp)
             val currToPlay = getCurrPlay(fp)
             board.printBoard()
