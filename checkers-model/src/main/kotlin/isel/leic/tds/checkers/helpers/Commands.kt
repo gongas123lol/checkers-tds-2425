@@ -51,7 +51,8 @@ private fun handleMoveCommand(split: List<String>, game: Game): Game {
         srcMove.row.displayidx,
         srcMove.column.displayChar,
         destMove.row.displayidx,
-        destMove.column.displayChar
+        destMove.column.displayChar,
+        game.who
     )
 
     val nextToPlay = when(game.who){

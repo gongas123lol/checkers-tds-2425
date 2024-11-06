@@ -38,7 +38,7 @@ class Board(size: Int?, rows: List<List<Square>>?) {
     private  fun CharToInt(c :Char) : Int = (c - 'a').toInt()
 
      //esta funcao poderia receber um square....
-    fun movePiece(row: Int, col: Char, destRow: Int, destCol: Char): Board {
+    fun movePiece(row: Int, col: Char, destRow: Int, destCol: Char, who: Char): Board {
         if (row == destRow && col == destCol){
             println("invalid play.")
             return this
@@ -46,16 +46,25 @@ class Board(size: Int?, rows: List<List<Square>>?) {
 
         val curr = getSquare(row, col)
         val dest = getSquare(destRow, destCol)
+        val now = if(who == 'B') Piece.BLACK else Piece.WHITE
 
         val dist = distanceBetween(row,col,destRow,destCol)
-        if(dist != sqrt2 && dist != sqrt8 || (curr.piece == Piece.BLACK && destRow > row) || (curr.piece == Piece.WHITE && destRow < row)){
+        if(dist != sqrt2 && dist != sqrt8 ||
+            (curr.piece == Piece.BLACK && destRow > row) ||
+            (curr.piece == Piece.WHITE && destRow < row) ||
+            (curr.piece != now) ||
+            (dest.piece != null)
+            ){
             println("---invalid play---")
             return this
         }
 
         if(dist == sqrt8){
             val pieceInTheMiddle = getMiddle(row,col,destRow, destCol)
-            println(pieceInTheMiddle)
+            if(pieceInTheMiddle.piece != null && pieceInTheMiddle.piece != now){
+                // remove this piece bc it was eaten
+                //val boardaftereating = this.withPiece()
+            }
         }else if(dist == sqrt2){
 
         }
