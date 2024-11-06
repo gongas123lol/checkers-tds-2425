@@ -58,20 +58,22 @@ class Board(size: Int?, rows: List<List<Square>>?) {
             println("---invalid play---")
             return this
         }
+         val boardAfterMove = this.withPiece(destRow, destCol, curr.piece)
 
-        if(dist == sqrt8){
-            val pieceInTheMiddle = getMiddle(row,col,destRow, destCol)
-            if(pieceInTheMiddle.piece != null && pieceInTheMiddle.piece != now){
-                // remove this piece bc it was eaten
-                //val boardaftereating = this.withPiece()
-            }
-        }else if(dist == sqrt2){
+         val middleRow = (row + destRow) / 2
+         val middleCol = intToChar((CharToInt(col) + CharToInt(destCol)) / 2)
+         val pieceInTheMiddle = getMiddle(row,col,destRow, destCol)
 
-        }
+         val boardmid: Board = if(dist == sqrt8 && (pieceInTheMiddle.piece != null && pieceInTheMiddle.piece != now)){
+             println("eaten!")
+              boardAfterMove.withPiece(middleRow,middleCol, null)
+         }else{
+              boardAfterMove
+         }
 
-        val boardAfterMove = this.withPiece(destRow, destCol, curr.piece)
+
         println(boardAfterMove)
-        return boardAfterMove.withPiece(row, col, null)
+        return boardmid.withPiece(row, col, null)
 
     }
 
