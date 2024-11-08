@@ -46,21 +46,21 @@ private fun handleMoveCommand(split: List<String>, game: Game): Game {
 
     val srcMove: Square = split[1].toSquare()
     val destMove: Square = split[2].toSquare()
-
+    val nextToPlay = when(game.who){
+        'B' -> 'W'
+        'W' -> 'B'
+        else-> 'W'
+    }
     val updatedBoard = game.board.movePiece(
         srcMove.row.displayidx,
         srcMove.column.displayChar,
         destMove.row.displayidx,
         destMove.column.displayChar,
-        game.who
+        nextToPlay
     )
 
-    val nextToPlay = when(game.who){
-            'B' -> 'W'
-            'W' -> 'B'
-            else-> 'W'
-    }
-    if(updatedBoard != game.board){
+
+    if(updatedBoard.rows != game.board.rows){
         updatedBoard.printBoard()
         println("NOW PLAYS: $nextToPlay")
         return game.copy(who = nextToPlay ,board = updatedBoard)

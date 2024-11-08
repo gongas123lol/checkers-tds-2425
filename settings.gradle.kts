@@ -11,3 +11,5 @@ rootProject.name = "checkers"
 
 include("checkers-model")
 include("checkers-console-ui")
+include("checkers-model:test")
+findProject(":checkers-model:test")?.name = "test"

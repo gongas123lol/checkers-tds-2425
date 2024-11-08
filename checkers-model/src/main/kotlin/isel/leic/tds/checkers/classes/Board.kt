@@ -50,8 +50,8 @@ class Board(size: Int?, rows: List<List<Square>>?) {
 
         val dist = distanceBetween(row,col,destRow,destCol)
         if(dist != sqrt2 && dist != sqrt8 ||
-            (curr.piece == Piece.BLACK && destRow > row) ||
-            (curr.piece == Piece.WHITE && destRow < row) ||
+            (curr.piece == Piece.BLACK && destCol > col) ||
+            (curr.piece == Piece.WHITE && destCol < col) ||
             (curr.piece != now) ||
             (dest.piece != null)
             ){
